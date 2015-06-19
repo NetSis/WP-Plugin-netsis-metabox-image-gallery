@@ -3,7 +3,7 @@
 Plugin Name: NetSis - Metabox Image Gallery
 Plugin URI: 
 Description: Permite inclusão de galeria de imagens para tipos de posts customizados
-Version: 0.4.0
+Version: 0.4.1
 Author: NetSis - Sistemas Web
 Author URI: http://www.netsis.com.br
 License: Copyright

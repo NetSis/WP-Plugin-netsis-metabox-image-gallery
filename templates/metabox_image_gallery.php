@@ -16,16 +16,28 @@ if ($images_ids != '') {
 			$image_url = $upload_dir_info['baseurl'].'/'.substr($image['file'], 0, strrpos($image['file'], '/') + 1).$image['sizes']['thumbnail']['file'];
 		}
 		else {
-			$mime_type = ($image['mime-type']);
+			if (array_key_exists('mime-type', $image))
+				$mime_type = ($image['mime-type']);
+			else
+				$mime_type = null;
+
 			$image_url = $upload_dir_info['baseurl'].'/'.$image['file'];
 		}
 
-		$mime_type = explode('/', $mime_type);
+		$type = null;
+		$subtype = null;
+		if ($mime_type != null)
+		{
+			$mime_type = explode('/', $mime_type);
+
+			$type = $mime_type[0];
+			$subtype = $mime_type[1];
+		}
 
 		
 ?>
 	<li class="attachment save-ready">
-		<div class="attachment-preview type-<?php echo $mime_type[0]; ?> subtype-<?php echo $mime_type[1]; ?> portrait">
+		<div class="attachment-preview<?php if ($type != null) echo ' type-'.$type; if ($subtype != null) echo ' subtype-'.$subtype; ?> portrait">
 			<div class="thumbnail">
 				<div class="centered">
 					<img src="<?php echo $image_url; ?>" alt="<?php echo $image['image_meta']['title']; ?>" data-attachment-id="<?php echo $id; ?>" />
